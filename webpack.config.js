@@ -1,8 +1,6 @@
 'use strict';
 
-const path = require('path');
 const webpack = require('webpack');
-const ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
     entry: "./client/app/app",
@@ -25,8 +23,7 @@ module.exports = {
           test: /\.css$/,
           loaders: [
               'style',
-              'css?importLoaders=2&localIdentName=[name]__[local]__[hash:base64:5]',
-              'postcss'
+              'css'
           ]
         },
         {

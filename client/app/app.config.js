@@ -1,6 +1,6 @@
 function routing($urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 }
 
 routing.$inject = ['$urlRouterProvider', '$locationProvider'];

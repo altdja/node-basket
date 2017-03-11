@@ -1,3 +1,23 @@
 <div class="container">
-  
+    <div class="col-big">
+        <div ng-repeat="product in $ctrl.products" class="product">
+            <p>{{product.name}}</p>
+            <p class="descr">Описание: {{product.description}}</p>
+            <p class="descr">Стоимость: {{product.price}}</p>
+            <button ng-click="$ctrl.addToBasket(product, true);">Добавить в корзину</button>
+        </div>
+    </div>
+    <div class="col-small">
+        <div class="basket-h">
+            <p>Корзина</p>
+        </div>
+        <div ng-if="$ctrl.basket.length > 0">
+            <div class="basket-list" ng-repeat="item in $ctrl.basket">
+                <p>{{item.name}} x {{item.quantity}}</p>
+                <button ng-click="$ctrl.addToBasket(item, false);" class="del">-</button>
+            </div>
+        </div>
+        <p ng-if="$ctrl.basket.length === 0" style="color: gray;">Пусто</p>
+        <button class="clear" ng-click="$ctrl.clearBasket();">Очистить</button>
+    </div>
 </div>

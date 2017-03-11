@@ -1,0 +1,57 @@
+html {
+    height: 100%;
+    font-family: Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    display: flex;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.col-big {
+    width: 70%;
+    margin-right: 20px;
+}
+
+.col-small{
+    width: 30%;
+    height: 100%;
+    text-align: center;
+    padding: 0 20px;
+    background-color: gainsboro;
+    border-radius: 5px;
+}
+
+.product {
+    border-radius: 5px;
+    background-color: #e5dcff;
+    padding: 10px;
+    margin-bottom: 5px;    
+}
+
+.descr {
+    font-size: 14px;
+    color: darkslategray;
+    margin: 0px;
+}
+
+button {
+    margin-top: 8px;
+}
+
+.clear {
+    margin-bottom: 10px;
+}
+
+.basket-list {
+    position: relative;
+}
+
+.del {
+    position: absolute;
+    top: -1px;
+    margin: 0;
+    right: -10px;
+}
