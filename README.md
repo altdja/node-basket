@@ -13,5 +13,5 @@ Basket project.
   - Build bandle.js use `npm run build`;
   - Run MongoDB and use default configuration;
   - Run backend server `node server.js` OR `nodemon`;
-  - Go to `localhost:8080`
-  - Enjoy
+  - Go to `localhost:8081`;
+  - Enjoy;
