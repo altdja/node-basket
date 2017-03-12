@@ -24,7 +24,14 @@ const server = app.listen(config.server.port, function () {
 });
 
 app.all('*', function (req, res, next) {
-    return res.sendFile(path.join(__dirname+'/public/index.html'));
+  if (req.url === '/') return res.sendFile(path.join(__dirname+'/public/index.html'));
+  return res.status(404).send({
+    code: 404,
+    error: {
+      type: "invalid_request_error",
+      message: `Unable to resolve the request "http://localhost:8081${req.url}"`
+    }
+  });
 });
 
 

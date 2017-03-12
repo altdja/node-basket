@@ -6,13 +6,13 @@ html {
 
 .container {
     display: flex;
-    width: 500px;
+    width: 650px;
     margin: 0 auto;
 }
 
 .col-big {
     width: 70%;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .col-small{
@@ -47,6 +47,12 @@ button {
 
 .basket-list {
     position: relative;
+}
+
+.basket-item {
+    font-size: 14px;
+    color: dimgray;
+    margin: 3px;
 }
 
 .del {

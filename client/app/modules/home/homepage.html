@@ -11,13 +11,15 @@
         <div class="basket-h">
             <p>Корзина</p>
         </div>
-        <div ng-if="$ctrl.basket.length > 0">
-            <div class="basket-list" ng-repeat="item in $ctrl.basket">
-                <p>{{item.name}} x {{item.quantity}}</p>
+        <div ng-if="$ctrl.basket.products.length > 0">
+            <div class="basket-list" ng-repeat="item in $ctrl.basket.products">
+                <p class="basket-item">{{item.name}} x {{item.quantity}}</p>
                 <button ng-click="$ctrl.addToBasket(item, false);" class="del">-</button>
             </div>
+            <p>Всего товаров: {{$ctrl.basket.products_count}}</p>
+            <p>Сумма: {{$ctrl.basket.total_sum}}</p>
+            <button class="clear" ng-click="$ctrl.clearBasket();">Очистить</button>
         </div>
-        <p ng-if="$ctrl.basket.length === 0" style="color: gray;">Пусто</p>
-        <button class="clear" ng-click="$ctrl.clearBasket();">Очистить</button>
+        <p ng-if="$ctrl.basket.products.length === 0" style="color: gray;">Пусто</p>
     </div>
 </div>

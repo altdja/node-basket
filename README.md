@@ -1,4 +1,4 @@
-Alt's music
+Basket project.
 
 1. Install: install npm packege via `npm i`;
 2. Create config file PATH `./config/local.js`
@@ -8,10 +8,10 @@ Alt's music
         port: 8081
     }
     ```
-    
+
 3. Run: 
   - Build bandle.js use `npm run build`;
-  - Run webpack `npm run dev`;
-  - Run backend server `node server.js`;
+  - Run MongoDB and use default configuration;
+  - Run backend server `node server.js` OR `nodemon`;
   - Go to `localhost:8080`
   - Enjoy

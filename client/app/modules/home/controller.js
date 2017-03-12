@@ -8,7 +8,11 @@ export default class HomepageController {
   constructor($scope, $state) {
     this.scope = $scope;
     this.state = $state;
-    this.basket = [];
+    this.basket = {
+      products: [],
+      total_sum: null,
+      products_count: null
+    };
     this.products = [
       {
         "id": 1,
@@ -45,20 +49,26 @@ export default class HomepageController {
   }
 
   addToBasket(product, attr) {
-    const t = this.basket.find(v => v.id === product.id);
+    const t = this.basket.products.find(v => v.id === product.id);
     if (t) {
       if (t.quantity < 10 && attr) {
+        this.basket.total_sum +=  t.price;
+        this.basket.products_count++;
         t.quantity++;
       }
       if (t.quantity === 1 && !attr) {
         return this.deleteProductFromBasket(t.id);
       }
       if (!attr) {
+        this.basket.total_sum -=  t.price;
+        this.basket.products_count--;
         t.quantity--;
       }
     } else {
       product.quantity = 1;
-      this.basket.push(product);
+      this.basket.total_sum += product.price;
+      this.basket.products_count++;
+      this.basket.products.push(product);
     }
     this.sendToBasket(product, attr);
   }
@@ -76,8 +86,12 @@ export default class HomepageController {
   deleteProductFromBasket(id) {
     axios.delete(`http://localhost:8081/api/cart/${id}`)
       .then(() => {
-        this.basket.map((v, index) => {
-          if (v.id === id) this.basket.splice(index, 1);
+        this.basket.products.map((v, index) => {
+          if (v.id === id) {
+            this.basket.products.splice(index, 1)
+            this.basket.total_sum -=  v.price;
+            this.basket.products_count--;
+          };
           return v;
         })
         this.scope.$apply();
@@ -90,7 +104,11 @@ export default class HomepageController {
   clearBasket() {
     axios.delete('http://localhost:8081/api/cart/clear')
       .then(() => {
-        this.basket = [];
+        this.basket = {
+          products: [],
+          total_sum: null,
+          products_count: null
+        };
         this.scope.$apply();
       })
       .catch((err) => {
@@ -102,13 +120,17 @@ export default class HomepageController {
     axios.get('http://localhost:8081/api/products')
       .then((data) => {
         data = data.data.data;
-        data.map(v => {
-          const t = this.products.find(r => r.id === v.id);
-          if (t) {
-            t.quantity = v.quantity;
-            this.basket.push(t);
-          }
-        });
+        this.basket = {
+          total_sum: data.total_sum,
+          products_count: data.products_count,
+          products: data.products.map(v => {
+            const t = this.products.find(r => r.id === v.id);
+            if (t) {
+              t.quantity = v.quantity;
+              return t;
+            }
+          })
+        };
       })
       .catch((err) => {
         console.log(err);
